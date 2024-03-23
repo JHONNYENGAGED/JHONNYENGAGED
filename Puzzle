@@ -1,0 +1,87 @@
+import pygame
+import sys
+import random
+
+# Initialize Pygame
+pygame.init()
+
+# Constants
+WIDTH = 400
+HEIGHT = 400
+TILE_SIZE = WIDTH // 4
+FPS = 30
+WHITE = (255, 255, 255)
+
+# Function to draw the grid
+def draw_grid():
+    for x in range(0, WIDTH, TILE_SIZE):
+        pygame.draw.line(screen, WHITE, (x, 0), (x, HEIGHT))
+    for y in range(0, HEIGHT, TILE_SIZE):
+        pygame.draw.line(screen, WHITE, (0, y), (WIDTH, y))
+
+# Function to shuffle the tiles
+def shuffle_tiles():
+    tiles = [i for i in range(15)]
+    random.shuffle(tiles)
+    return tiles
+
+# Function to draw the tiles
+def draw_tiles(tiles):
+    for i, tile in enumerate(tiles):
+        row = i // 4
+        col = i % 4
+        x = col * TILE_SIZE
+        y = row * TILE_SIZE
+        if tile != 15:
+            screen.blit(image, (x, y), (tile % 4 * TILE_SIZE, tile // 4 * TILE_SIZE, TILE_SIZE, TILE_SIZE))
+
+# Function to check if the puzzle is solved
+def is_solved(tiles):
+    return tiles == list(range(15))
+
+# Set up the screen
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Sliding Puzzle")
+clock = pygame.time.Clock()
+
+# Load the image
+image = pygame.image.load("image.jpg")
+image = pygame.transform.scale(image, (WIDTH, HEIGHT))
+
+# Main game loop
+def main():
+    tiles = shuffle_tiles()
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                x, y = pygame.mouse.get_pos()
+                col = x // TILE_SIZE
+                row = y // TILE_SIZE
+                index = row * 4 + col
+
+                if index - 4 in tiles and index // 4 == (index - 4) // 4 + 1:  # Move up
+                    tiles[index], tiles[index - 4] = tiles[index - 4], tiles[index]
+                elif index + 4 in tiles and index // 4 == (index + 4) // 4 - 1:  # Move down
+                    tiles[index], tiles[index + 4] = tiles[index + 4], tiles[index]
+                elif index - 1 in tiles and index % 4 == (index - 1) % 4 + 1:  # Move left
+                    tiles[index], tiles[index - 1] = tiles[index - 1], tiles[index]
+                elif index + 1 in tiles and index % 4 == (index + 1) % 4 - 1:  # Move right
+                    tiles[index], tiles[index + 1] = tiles[index + 1], tiles[index]
+
+        screen.fill((0, 0, 0))
+        draw_grid()
+        draw_tiles(tiles)
+        pygame.display.flip()
+
+        if is_solved(tiles):
+            print("Congratulations! You solved the puzzle.")
+            break
+
+        clock.tick(FPS)
+
+if __name__ == "__main__":
+    main()
