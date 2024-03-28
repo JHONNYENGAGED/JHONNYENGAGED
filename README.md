@@ -7,6 +7,6 @@
 - ⚡ Fun fact: Gamer
 
 <!---
-JHONNYENGAGED/JHONNYENGAGED is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+HARI HARA SABBARI RAJ S  is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 You can click the Preview link to take a look at your changes.
 --->
