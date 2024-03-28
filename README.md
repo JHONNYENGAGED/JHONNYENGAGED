@@ -1,9 +1,9 @@
-- 👋 Hi, I’m @JHONNY
+- 👋 Hi, I’m @HARI HARA SABBARI RAJ S 
 - 👀 I’m interested in Gaming
 - 🌱 I’m currently learning Design 
 - 💞️ I’m looking to collaborate on Gamers
-- 📫 How to reach me catiav5jhonny@gmail.com
-- 😄 Pronouns: Jhonny 
+- 📫 How to reach me hariharasabbariraj@gmail.com
+- 😄 Pronouns: Hari  
 - ⚡ Fun fact: Gamer
 
 <!---
